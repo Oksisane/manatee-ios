@@ -355,8 +355,10 @@ public class HTTPTask : NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
             var split = url.hasPrefix("/") ? "" : "/"
             urlVal = "\(self.baseURL!)\(split)\(url)"
         }
-    return self.requestSerializer.createRequest(NSURL(string: urlVal)!,
-            method: method, parameters: parameters)
+    if let u = NSURL(string: urlVal) {
+        return self.requestSerializer.createRequest(u, method: method, parameters: parameters)
+    }
+    return (NSURLRequest(),createError(-1001))
     }
     
     /**
@@ -384,9 +386,11 @@ public class HTTPTask : NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
     private func createError(code: Int) -> NSError {
         var text = "An error occured"
         if code == 404 {
-            text = "page not found"
+            text = "Page not found"
         } else if code == 401 {
-            text = "accessed denied"
+            text = "Access denied"
+        } else if code == -1001 {
+            text = "Invalid URL"
         }
         return NSError(domain: "HTTPTask", code: code, userInfo: [NSLocalizedDescriptionKey: text])
     }
@@ -411,6 +415,7 @@ public class HTTPTask : NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
             let cred = a(challenge)
             if let c = cred {
                 completionHandler(.UseCredential, c)
+                return
             }
             completionHandler(.RejectProtectionSpace, nil)
             return

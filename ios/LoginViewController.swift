@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class LoginViewController: UIViewController {
 
     
@@ -16,28 +15,51 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var labelTextField: UILabel!
     
     @IBAction func verifyLogin(sender: AnyObject) {
-        var usr = "secret"
-        var pw = "password"
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        if (usernameTextField.text == usr && passwordTextField.text == pw){
-            labelTextField.text = "Login Successful"
-            usernameTextField.resignFirstResponder()
-            passwordTextField.resignFirstResponder()
-            labelTextField.textColor = UIColor.greenColor()
-            let firstViewController:FirstViewController = FirstViewController()
-            if let resultController = storyboard.instantiateViewControllerWithIdentifier("Grade") as? FirstViewController {
-                presentViewController(resultController, animated: true, completion: nil)
+        Retriever.getAustinisdCookie(usernameTextField.text, password: passwordTextField.text){
+            if ($0 != "ERROR"){
+                let cookie = "CStoneSessionID="+$0!
+                Retriever.getTEAMSCookie(cookie){
+                    if ($0 != "ERROR"){
+                        //Got second cookie
+                        let finalcookie = $0! + ";" + cookie
+                        Retriever.login(self.usernameTextField.text,password:self.passwordTextField.text,cookies:finalcookie)
+                        {
+                            if ($0 != "ERROR"){
+                                self.usernameTextField.resignFirstResponder()
+                                self.passwordTextField.resignFirstResponder()
+                                self.labelTextField.textColor = UIColor.greenColor()
+                                let firstViewController:FirstViewController = FirstViewController()
+                                if let resultController = storyboard.instantiateViewControllerWithIdentifier("Grade") as? FirstViewController
+                                {
+                                    self.presentViewController(resultController, animated: true, completion: nil)
+                                }
+
+                            }
+                            else{
+                                self.labelTextField.text = "Login Unsucessful"
+                                self.usernameTextField.resignFirstResponder()
+                                self.passwordTextField.resignFirstResponder()
+                                self.labelTextField.textColor = UIColor.redColor()
+                            }
+                        }
+                    }
+                    else{
+                        self.labelTextField.text = "Login Unsucessful"
+                        self.usernameTextField.resignFirstResponder()
+                        self.passwordTextField.resignFirstResponder()
+                        self.labelTextField.textColor = UIColor.redColor()
+                    }
+                }
+            }
+            else{
+                self.labelTextField.text = "Login Unsucessful"
+                self.usernameTextField.resignFirstResponder()
+                self.passwordTextField.resignFirstResponder()
+                self.labelTextField.textColor = UIColor.redColor()
             }
         }
-        else{
-            labelTextField.text = "Login Unsucessful"
-            usernameTextField.resignFirstResponder()
-            passwordTextField.resignFirstResponder()
-            labelTextField.textColor = UIColor.redColor()
-        }
-        
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

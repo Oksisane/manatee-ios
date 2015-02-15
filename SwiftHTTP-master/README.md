@@ -122,12 +122,18 @@ let downloadTask = request.download("http://vluxe.io/assets/images/logo.png", pa
     }, success: {(response: HTTPResponse) in
     println("download finished!")
     if response.responseObject != nil {
-        //we MUST copy the file from its temp location to a permanent location.
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let newPath = NSURL(string:  "\(paths[0])/\(response.suggestedFilename!)")!
-        let fileManager = NSFileManager.defaultManager()
-        fileManager.removeItemAtURL(newPath, error: nil)
-        fileManager.moveItemAtURL(response.responseObject! as NSURL, toURL: newPath, error: nil)
+	    //we MUST copy the file from its temp location to a permanent location.
+        if let url = response.responseObject as? NSURL {
+            if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as? String {
+                if let fileName = response.suggestedFilename {
+                    if let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)") {
+                        let fileManager = NSFileManager.defaultManager()
+                        fileManager.removeItemAtURL(newPath, error: nil)
+                        fileManager.moveItemAtURL(url, toURL: newPath, error:nil)
+                    }
+                }
+            }
+        }
     }
 
     } ,failure: {(error: NSError, response: HTTPResponse?) in
@@ -335,18 +341,89 @@ Swift has a lot of great JSON parsing libraries, but I made one specifically des
 
 ## Requirements
 
-SwiftHTTP requires at least iOS 8/OSX 10.10 or above.
+SwiftHTTP works with iOS 7/OSX 10.9 or above. It is recommended to use iOS 8/10.10 or above for Cocoapods/framework support.
 
 ## Installation
 
+### Cocoapods
+
+### [CocoaPods](http://cocoapods.org/)
+At this time, Cocoapods support for Swift frameworks is supported in a [pre-release](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/).
+
+To use SwiftHTTP in your project add the following 'Podfile' to your project
+
+    source 'https://github.com/CocoaPods/Specs.git'
+
+    xcodeproj 'YourProjectName.xcodeproj'
+    platform :ios, '8.0'
+
+    pod 'SwiftHTTP', :git => "https://github.com/daltoniam/SwiftHTTP.git", :tag => "0.9.1"
+
+    target 'YourProjectNameTests' do
+        pod 'SwiftHTTP', :git => "https://github.com/daltoniam/SwiftHTTP.git", :tag => "0.9.1"
+    end
+
+Then run:
+
+    pod install
+
+#### Updating the Cocoapod
+You can validate SwiftHTTP.podspec using:
+
+    pod spec lint SwiftHTTP.podspec
+
+This should be tested with a sample project before releasing it. This can be done by adding the following line to a ```Podfile```:
+
+    pod 'SwiftHTTP', :git => 'https://github.com/username/SwiftHTTP.git'
+
+Then run:
+
+    pod install
+
+If all goes well you are ready to release. First, create a tag and push:
+
+    git tag 'version'
+    git push --tags
+
+Once the tag is available you can send the library to the Specs repo. For this you'll have to follow the instructions in [Getting Setup with Trunk](http://guides.cocoapods.org/making/getting-setup-with-trunk.html).
+
+    pod trunk push SwiftHTTP.podspec
+
+
+
+### Carthage
+
+Check out the [Carthage](https://github.com/Carthage/Carthage) docs on how to add a install. The `SwiftHTTP` framework is already setup with shared schemes.
+
+[Carthage Install](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application)
+
+### Rogue
+
+First see the [installation docs](https://github.com/acmacalister/Rogue) for how to install Rogue.
+
+To install SwiftLog run the command below in the directory you created the rogue file.
+
+```
+rogue add https://github.com/daltoniam/SwiftHTTP
+```
+
+Next open the `libs` folder and add the `SwiftHTTP.xcodeproj` to your Xcode project. Once that is complete, in your "Build Phases" add the `SwiftHTTP.framework` to your "Link Binary with Libraries" phase. Make sure to add the `libs` folder to your `.gitignore` file.
+
+### Other
+
+Simply grab the framework (either via git submodule or another package manager).
+
 Add the `SwiftHTTP.xcodeproj` to your Xcode project. Once that is complete, in your "Build Phases" add the `SwiftHTTP.framework` to your "Link Binary with Libraries" phase.
+
+### Add Copy Frameworks Phase
+
+If you are running this in an OSX app or on a physical iOS device you will need to make sure you add the `SwiftHTTP.framework` or `SwiftHTTPOSX.framework` to be included in your app bundle. To do this, in Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar. In the tab bar at the top of that window, open the "Build Phases" panel. Expand the "Link Binary with Libraries" group, and add `SwiftHTTP.framework` or `SwiftHTTPOSX.framework` depending on if you are building an iOS or OSX app. Click on the + button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `SwiftHTTP.framework` or `SwiftHTTPOSX.framework` respectively.
 
 ## TODOs
 
 - [ ] Complete Docs
 - [ ] Add Unit Tests
 - [ ] Add Example Project
-- [ ] Add [Rouge](https://github.com/acmacalister/Rouge) Installation Docs
 
 ## License
 
