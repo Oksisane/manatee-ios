@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 class LoginViewController: UIViewController {
 
     
@@ -16,41 +17,21 @@ class LoginViewController: UIViewController {
     
     @IBAction func verifyLogin(sender: AnyObject) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        Retriever.getAustinisdCookie(usernameTextField.text, password: passwordTextField.text){
+        
+        Retriever.login(usernameTextField.text, password: passwordTextField.text){
             if ($0 != "ERROR"){
-                let cookie = "CStoneSessionID="+$0!
-                Retriever.getTEAMSCookie(cookie){
-                    if ($0 != "ERROR"){
-                        //Got second cookie
-                        let finalcookie = $0! + ";" + cookie
-                        Retriever.login(self.usernameTextField.text,password:self.passwordTextField.text,cookies:finalcookie)
-                        {
-                            if ($0 != "ERROR"){
-                                self.usernameTextField.resignFirstResponder()
-                                self.passwordTextField.resignFirstResponder()
-                                self.labelTextField.textColor = UIColor.greenColor()
-                                let firstViewController:FirstViewController = FirstViewController()
-                                if let resultController = storyboard.instantiateViewControllerWithIdentifier("Grade") as? FirstViewController
-                                {
-                                    self.presentViewController(resultController, animated: true, completion: nil)
-                                }
-
-                            }
-                            else{
-                                self.labelTextField.text = "Login Unsucessful"
-                                self.usernameTextField.resignFirstResponder()
-                                self.passwordTextField.resignFirstResponder()
-                                self.labelTextField.textColor = UIColor.redColor()
-                            }
-                        }
-                    }
-                    else{
-                        self.labelTextField.text = "Login Unsucessful"
-                        self.usernameTextField.resignFirstResponder()
-                        self.passwordTextField.resignFirstResponder()
-                        self.labelTextField.textColor = UIColor.redColor()
-                    }
+                Retriever.getCourses($0!){
+                    println($0[0].semseters[0].cycles[0].average.grade)
                 }
+//                self.usernameTextField.resignFirstResponder()
+//                self.passwordTextField.resignFirstResponder()
+//                self.labelTextField.textColor = UIColor.greenColor()
+//                let firstViewController:FirstViewController = FirstViewController()
+//                if let resultController = storyboard.instantiateViewControllerWithIdentifier("Grade") as? FirstViewController
+//                {
+//                    self.presentViewController(resultController, animated: true, completion: nil)
+//                }
+                
             }
             else{
                 self.labelTextField.text = "Login Unsucessful"
@@ -58,6 +39,7 @@ class LoginViewController: UIViewController {
                 self.passwordTextField.resignFirstResponder()
                 self.labelTextField.textColor = UIColor.redColor()
             }
+
         }
     }
     override func viewDidLoad() {

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3CBD05531AC8C5F2881AC847 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A3E70F9944B100FA529973 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C27407161A9061600091751E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C27407151A9061600091751E /* libxml2.dylib */; };
+		C27407191A9062E80091751E /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27407171A9062E80091751E /* HTMLNode.swift */; };
+		C274071A1A9062E80091751E /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27407181A9062E80091751E /* HTMLParser.swift */; };
+		C274071C1A9063750091751E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C274071B1A9063750091751E /* Parser.swift */; };
+		C274071E1A913A660091751E /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C274071D1A913A660091751E /* DataStructs.swift */; };
 		C28CE2741A3D25510070096C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2731A3D25510070096C /* AppDelegate.swift */; };
 		C28CE2761A3D25510070096C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2751A3D25510070096C /* FirstViewController.swift */; };
 		C28CE2781A3D25510070096C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2771A3D25510070096C /* SecondViewController.swift */; };
@@ -33,6 +38,11 @@
 		02C7BA376601AA9803945547 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		25A3E70F9944B100FA529973 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71DD599F3F7578970FFBEC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C27407151A9061600091751E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		C27407171A9062E80091751E /* HTMLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLNode.swift; path = "Swift-HTML-Parser-master/Swift-HTML-Parser/HTMLNode.swift"; sourceTree = "<group>"; };
+		C27407181A9062E80091751E /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLParser.swift; path = "Swift-HTML-Parser-master/Swift-HTML-Parser/HTMLParser.swift"; sourceTree = "<group>"; };
+		C274071B1A9063750091751E /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		C274071D1A913A660091751E /* DataStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
 		C28CE26E1A3D25510070096C /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28CE2721A3D25510070096C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C28CE2731A3D25510070096C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27407161A9061600091751E /* libxml2.dylib in Frameworks */,
 				3CBD05531AC8C5F2881AC847 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +90,7 @@
 		4321658A3387720E8834C811 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C27407151A9061600091751E /* libxml2.dylib */,
 				25A3E70F9944B100FA529973 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -87,6 +99,8 @@
 		C28CE2651A3D25510070096C = {
 			isa = PBXGroup;
 			children = (
+				C27407171A9062E80091751E /* HTMLNode.swift */,
+				C27407181A9062E80091751E /* HTMLParser.swift */,
 				C28CE2701A3D25510070096C /* ios */,
 				C28CE2881A3D25510070096C /* iosTests */,
 				C28CE26F1A3D25510070096C /* Products */,
@@ -116,6 +130,8 @@
 				C28CE27E1A3D25510070096C /* LaunchScreen.xib */,
 				C28CE2711A3D25510070096C /* Supporting Files */,
 				C2A255231A8EB7D200AAB13D /* Retriever.swift */,
+				C274071B1A9063750091751E /* Parser.swift */,
+				C274071D1A913A660091751E /* DataStructs.swift */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -296,8 +312,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27407191A9062E80091751E /* HTMLNode.swift in Sources */,
+				C274071A1A9062E80091751E /* HTMLParser.swift in Sources */,
 				C2A255241A8EB7D200AAB13D /* Retriever.swift in Sources */,
 				C28CE2DC1A3D35B50070096C /* LoginViewController.swift in Sources */,
+				C274071E1A913A660091751E /* DataStructs.swift in Sources */,
+				C274071C1A9063750091751E /* Parser.swift in Sources */,
 				C28CE2781A3D25510070096C /* SecondViewController.swift in Sources */,
 				C28CE2741A3D25510070096C /* AppDelegate.swift in Sources */,
 				C28CE2761A3D25510070096C /* FirstViewController.swift in Sources */,
@@ -379,7 +399,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.1;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -415,7 +435,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -426,9 +446,15 @@
 			baseConfigurationReference = 02C7BA376601AA9803945547 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = ios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "./Swift-HTML-Parser-master/Swift-HTML-Parser/Swift-HTML-Parser-Bridging-Header.h";
 			};
 			name = Debug;
 		};

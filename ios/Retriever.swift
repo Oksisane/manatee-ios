@@ -59,7 +59,7 @@ class Retriever{
         }
         //my-teams.austinisd.org/selfserve/EntryPointSignOnAction.do?parent=false
     }
-    class func login (username:String, password:String, cookies:String?,callback:(String?)->Void){
+    class func TEAMSlogin (username:String, password:String, cookies:String?,callback:(String?)->Void){
         let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
         let cooks = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         cfg.HTTPCookieStorage = cooks
@@ -81,7 +81,61 @@ class Retriever{
                     callback("ERROR")
                 }
             }.responseString { (_, _, string, _) in
+                println(string)
         }
         //my-teams.austinisd.org/selfserve/EntryPointSignOnAction.do?parent=false
+    }
+    //Get cookies and post login using other class methods
+    class func login (username:String,password:String,callback:(String?)->Void){
+        getAustinisdCookie(username, password:password){
+            if ($0 != "ERROR"){
+                let cookie = "CStoneSessionID="+$0!
+                self.getTEAMSCookie(cookie){
+                    if ($0 != "ERROR"){
+                        //Got second cookie
+                        let finalcookie = $0! + ";" + cookie
+                        self.TEAMSlogin(username,password:password,cookies:finalcookie)
+                        {
+                            if ($0 != "ERROR"){
+                                callback(finalcookie)
+                            }
+                            else{
+                                callback($0)
+                            }
+                        }
+                    }
+                    else{
+                        callback($0)
+                    }
+                }
+            }
+            else{
+                callback($0)
+            }
+        }
+    }
+    class func getCourses(finalcookie:String,callback:([Course])->Void){
+        let params = ["":""]
+        self.getTEAMSPage("/selfserve/PSSViewReportCardsAction.do",parameters:params,cookie:finalcookie){
+           callback(Parser.parseAverages($0!))
+        }
+    }
+    class func getTEAMSPage(path:String,parameters:[String: String],cookie:String,callback:(String?)->Void){
+        let cfg = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let cooks = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        cfg.HTTPCookieStorage = cooks
+        cfg.HTTPCookieAcceptPolicy = NSHTTPCookieAcceptPolicy.Always
+        let mgr = Alamofire.Manager(configuration: cfg)
+        mgr.session.configuration.HTTPAdditionalHeaders = [
+            "Cookie": cookie
+        ]
+        mgr.request(.POST, ("https://my-teams.austinisd.org" + path),parameters:parameters)
+            .response { (request, response, data, error) in
+                if error != nil{
+                    callback("ERROR")
+                }
+            }.responseString { (_, _, string, _) in
+                callback(string)
+        }
     }
 }
