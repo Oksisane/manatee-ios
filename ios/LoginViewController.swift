@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBAction func verifyLogin(sender: AnyObject) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
+        
         Retriever.login(usernameTextField.text, password: passwordTextField.text){
             if ($0 != "ERROR"){
                 Retriever.getCourses($0!){
@@ -37,6 +38,7 @@ class LoginViewController: UIViewController {
                 self.labelTextField.text = "Login Unsucessful"
                 self.usernameTextField.resignFirstResponder()
                 self.passwordTextField.resignFirstResponder()
+                
                 self.labelTextField.textColor = UIColor.redColor()
             }
 
@@ -44,6 +46,7 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.passwordTextField.secureTextEntry = true;
 
         // Do any additional setup after loading the view.
     }
