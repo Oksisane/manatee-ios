@@ -22,16 +22,16 @@ class LoginViewController: UIViewController {
         Retriever.login(usernameTextField.text, password: passwordTextField.text){
             if ($0 != "ERROR"){
                 Retriever.getCourses($0!){
-                    println($0[0].semseters[0].cycles[0].average.grade)
+                    println($0)
                 }
-//                self.usernameTextField.resignFirstResponder()
-//                self.passwordTextField.resignFirstResponder()
-//                self.labelTextField.textColor = UIColor.greenColor()
-//                let firstViewController:FirstViewController = FirstViewController()
-//                if let resultController = storyboard.instantiateViewControllerWithIdentifier("Grade") as? FirstViewController
-//                {
-//                    self.presentViewController(resultController, animated: true, completion: nil)
-//                }
+                self.usernameTextField.resignFirstResponder()
+                self.passwordTextField.resignFirstResponder()
+                self.labelTextField.textColor = UIColor.greenColor()
+                let firstViewController:FirstViewController = FirstViewController()
+                if let resultController = storyboard.instantiateViewControllerWithIdentifier("Grade") as? FirstViewController
+                {
+                    self.presentViewController(resultController, animated: true, completion: nil)
+                }
                 
             }
             else{

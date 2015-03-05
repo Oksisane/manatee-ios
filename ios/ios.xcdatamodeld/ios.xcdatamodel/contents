@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Course" representedClassName="Course" syncable="YES">
+        <attribute name="courseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacherName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="semesters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Semester" syncable="YES"/>
+    </entity>
+    <entity name="Cycle" representedClassName="Cycle" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="average" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradeValue" syncable="YES"/>
+    </entity>
+    <entity name="GradeValue" representedClassName="GradeValue" syncable="YES">
+        <attribute name="grade" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Semester" representedClassName="Semester" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="average" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradeValue" syncable="YES"/>
+        <relationship name="cycles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cycle" syncable="YES"/>
+        <relationship name="examGrade" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradeValue" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Course" positionX="-63" positionY="81" width="128" height="103"/>
+        <element name="Semester" positionX="-108" positionY="239" width="128" height="103"/>
+        <element name="Cycle" positionX="-92" positionY="414" width="128" height="73"/>
+        <element name="GradeValue" positionX="171" positionY="189" width="128" height="58"/>
+    </elements>
+</model>

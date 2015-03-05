@@ -80,8 +80,6 @@ class Retriever{
                 else{
                     callback("ERROR")
                 }
-            }.responseString { (_, _, string, _) in
-                println(string)
         }
         //my-teams.austinisd.org/selfserve/EntryPointSignOnAction.do?parent=false
     }

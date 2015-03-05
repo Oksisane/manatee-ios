@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class Parser{
+    
     class func parseAverages(html:String)->[Course]{
         var err : NSError?
         var parser = HTMLParser(html: html, error: &err)
@@ -46,7 +48,10 @@ class Parser{
             var semAvgCell = gradeCells![celloffset+4]
             semesters.append(parseSemester(semestercells, examcell: examCell,avgcell:semAvgCell,index:i))
         }
-        let course = Course(title: titleCell.contents, teacherName: teacherCell.contents, courseId: courseID, semseters: semesters)
+        
+        let course = Course.createInManagedObjectContext(managedObjectContext!,title: titleCell.contents, teacherName: teacherCell.contents, courseId: courseID, semseterss: semesters)
+        let blah = Course.createInManagedObjectContext(managedObjectContext!, title: "clac", teacherName: "davis", courseId: "test", semseterss: [] )
+        println(course)
         return course
     }
     class func parseSemester(cyclecells:[HTMLNode], examcell:HTMLNode,avgcell:HTMLNode,index:Int)->Semester{
@@ -55,9 +60,9 @@ class Parser{
             cycles.append(parseCycle(cyclecells[i],index:i))
         }
         var examlink = examcell.findChildTag("a")
-        var examgrade = GradeValue(fromString: examlink!.contents)
+        var examgrade = GradeValue.createInManagedObjectContext(managedObjectContext!, grade: examlink!.contents)
         if let fontTag = examlink?.findChildTag("font"){
-            examgrade = GradeValue(fromString: fontTag.contents)
+            examgrade = GradeValue.createInManagedObjectContext(managedObjectContext!, grade: fontTag.contents)
         }
         var semesterlink = avgcell.findChildTag("a")
         var numcompleted = Float(0)
@@ -65,24 +70,24 @@ class Parser{
         for i in 0...2{
             if (cycles[i].average.grade != -1){
                 numcompleted++
-                tempavg+=cycles[i].average.grade
+                tempavg+=Float(cycles[i].average.grade)
             }
         }
         if(examgrade.grade != -1){
             numcompleted++
-            tempavg+=examgrade.grade
+            tempavg+=Float(examgrade.grade)
         }
-        var semaverage = GradeValue(gradefloat:(tempavg/numcompleted))
-        let semesterout = Semester(index: index, average: semaverage, examGrade: examgrade, cycles: cycles)
+        var semaverage = GradeValue.createInManagedObjectContext(managedObjectContext!, grade: (tempavg/numcompleted))
+        let semesterout = Semester.createInManagedObjectContext(managedObjectContext!,index: index, average: semaverage, examGrade: examgrade, cycles: cycles)
         return semesterout
     }
     class func parseCycle(cycle:HTMLNode,index:Int)->Cycle{
         var link = cycle.findChildTag("a")
-        var average = GradeValue(fromString:link!.contents)
+        var average = GradeValue.createInManagedObjectContext(managedObjectContext!,grade:link!.contents)
         if let fontTag = link?.findChildTag("font"){
-            average = GradeValue(fromString: fontTag.contents)
+            average = GradeValue.createInManagedObjectContext(managedObjectContext!, grade: fontTag.contents)
         }
-        let cycle = Cycle(index: index, average: average)
+        let cycle = Cycle.createInManagedObjectContext(managedObjectContext!, index: index, average: average)
         return cycle
     }
 }
