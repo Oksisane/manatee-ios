@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3CBD05531AC8C5F2881AC847 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A3E70F9944B100FA529973 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C22E1B6B1ABB4CE000900BD8 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22E1B6A1ABB4CE000900BD8 /* CourseViewController.swift */; };
 		C27407161A9061600091751E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C27407151A9061600091751E /* libxml2.dylib */; };
 		C27407191A9062E80091751E /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27407171A9062E80091751E /* HTMLNode.swift */; };
 		C274071A1A9062E80091751E /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27407181A9062E80091751E /* HTMLParser.swift */; };
 		C274071C1A9063750091751E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C274071B1A9063750091751E /* Parser.swift */; };
 		C274071E1A913A660091751E /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C274071D1A913A660091751E /* DataStructs.swift */; };
+		C28081ED1ABB556B00E6FA2A /* CourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28081EC1ABB556B00E6FA2A /* CourseView.xib */; };
+		C28081EF1ABB571700E6FA2A /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28081EE1ABB571700E6FA2A /* TestView.xib */; };
+		C28081F11ABB578500E6FA2A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28081F01ABB578500E6FA2A /* TestViewController.swift */; };
 		C28CE2741A3D25510070096C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2731A3D25510070096C /* AppDelegate.swift */; };
 		C28CE2761A3D25510070096C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2751A3D25510070096C /* FirstViewController.swift */; };
 		C28CE2781A3D25510070096C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2771A3D25510070096C /* SecondViewController.swift */; };
@@ -38,11 +42,16 @@
 		02C7BA376601AA9803945547 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		25A3E70F9944B100FA529973 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71DD599F3F7578970FFBEC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C22E1B6A1ABB4CE000900BD8 /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		C26BFC261AB88DBB000F516B /* ios-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-bridging-header.h"; sourceTree = "<group>"; };
 		C27407151A9061600091751E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		C27407171A9062E80091751E /* HTMLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLNode.swift; path = "Swift-HTML-Parser-master/Swift-HTML-Parser/HTMLNode.swift"; sourceTree = "<group>"; };
 		C27407181A9062E80091751E /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLParser.swift; path = "Swift-HTML-Parser-master/Swift-HTML-Parser/HTMLParser.swift"; sourceTree = "<group>"; };
 		C274071B1A9063750091751E /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C274071D1A913A660091751E /* DataStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStructs.swift; sourceTree = "<group>"; };
+		C28081EC1ABB556B00E6FA2A /* CourseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseView.xib; sourceTree = "<group>"; };
+		C28081EE1ABB571700E6FA2A /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
+		C28081F01ABB578500E6FA2A /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		C28CE26E1A3D25510070096C /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28CE2721A3D25510070096C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C28CE2731A3D25510070096C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,10 +130,14 @@
 		C28CE2701A3D25510070096C /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				C28081EC1ABB556B00E6FA2A /* CourseView.xib */,
+				C28081EE1ABB571700E6FA2A /* TestView.xib */,
 				C28CE2DB1A3D35B50070096C /* LoginViewController.swift */,
 				C28CE2731A3D25510070096C /* AppDelegate.swift */,
 				C28CE2751A3D25510070096C /* FirstViewController.swift */,
 				C28CE2771A3D25510070096C /* SecondViewController.swift */,
+				C22E1B6A1ABB4CE000900BD8 /* CourseViewController.swift */,
+				C28081F01ABB578500E6FA2A /* TestViewController.swift */,
 				C28CE2791A3D25510070096C /* Main.storyboard */,
 				C28CE27C1A3D25510070096C /* Images.xcassets */,
 				C28CE27E1A3D25510070096C /* LaunchScreen.xib */,
@@ -132,6 +145,7 @@
 				C2A255231A8EB7D200AAB13D /* Retriever.swift */,
 				C274071B1A9063750091751E /* Parser.swift */,
 				C274071D1A913A660091751E /* DataStructs.swift */,
+				C26BFC261AB88DBB000F516B /* ios-bridging-header.h */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -246,6 +260,8 @@
 			files = (
 				C28CE27B1A3D25510070096C /* Main.storyboard in Resources */,
 				C28CE2801A3D25510070096C /* LaunchScreen.xib in Resources */,
+				C28081ED1ABB556B00E6FA2A /* CourseView.xib in Resources */,
+				C28081EF1ABB571700E6FA2A /* TestView.xib in Resources */,
 				C28CE27D1A3D25510070096C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,7 +330,9 @@
 			files = (
 				C27407191A9062E80091751E /* HTMLNode.swift in Sources */,
 				C274071A1A9062E80091751E /* HTMLParser.swift in Sources */,
+				C28081F11ABB578500E6FA2A /* TestViewController.swift in Sources */,
 				C2A255241A8EB7D200AAB13D /* Retriever.swift in Sources */,
+				C22E1B6B1ABB4CE000900BD8 /* CourseViewController.swift in Sources */,
 				C28CE2DC1A3D35B50070096C /* LoginViewController.swift in Sources */,
 				C274071E1A913A660091751E /* DataStructs.swift in Sources */,
 				C274071C1A9063750091751E /* Parser.swift in Sources */,
@@ -400,6 +418,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos8.1;
+				SWIFT_OBJC_BRIDGING_HEADER = "ios/ios-bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -436,6 +455,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos8.1;
+				SWIFT_OBJC_BRIDGING_HEADER = "ios/ios-bridging-header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

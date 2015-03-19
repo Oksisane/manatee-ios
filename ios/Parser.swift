@@ -46,7 +46,7 @@ class Parser{
             var semAvgCell = gradeCells![celloffset+4]
             semesters.append(parseSemester(semestercells, examcell: examCell,avgcell:semAvgCell,index:i))
         }
-        let course = Course(title: titleCell.contents, teacherName: teacherCell.contents, courseId: courseID, semseters: semesters)
+        let course = Course(title: titleCell.contents, teacherName: teacherCell.contents, courseId: courseID, semestersIn: semesters)
         return course
     }
     class func parseSemester(cyclecells:[HTMLNode], examcell:HTMLNode,avgcell:HTMLNode,index:Int)->Semester{
@@ -73,7 +73,7 @@ class Parser{
             tempavg+=examgrade.grade
         }
         var semaverage = GradeValue(gradefloat:(tempavg/numcompleted))
-        let semesterout = Semester(index: index, average: semaverage, examGrade: examgrade, cycles: cycles)
+        let semesterout = Semester(index: index, average: semaverage, examGrade: examgrade, cyclesIn: cycles)
         return semesterout
     }
     class func parseCycle(cycle:HTMLNode,index:Int)->Cycle{

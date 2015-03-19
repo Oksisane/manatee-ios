@@ -7,15 +7,21 @@
 //
 
 import UIKit
-
+import YapDatabase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var connection: YapDatabaseConnection?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        var baseDir = paths.count > 0 ? paths[0] as String : NSTemporaryDirectory() as String
+        var database = YapDatabase(path: baseDir.stringByAppendingPathComponent("YapDatabase.sqlite"))
+        connection = database.newConnection()
+
         return true
     }
 

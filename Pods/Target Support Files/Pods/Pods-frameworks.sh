@@ -49,7 +49,11 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'CocoaLumberjack.framework'
+  install_framework 'YapDatabase.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'CocoaLumberjack.framework'
+  install_framework 'YapDatabase.framework'
 fi
