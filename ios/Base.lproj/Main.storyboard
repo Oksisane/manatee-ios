@@ -134,20 +134,71 @@
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="Grade" id="9pv-A4-QxB" customClass="FirstViewController" customModule="ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
-                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" sectionHeaderHeight="22" sectionFooterHeight="22" id="YWf-fU-aio">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="181" id="DZE-3Z-9bL" customClass="CourseCell" customModule="ios" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DZE-3Z-9bL" id="wfj-NI-pCQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmC-kd-R12">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XmC-kd-R12" firstAttribute="leading" secondItem="wfj-NI-pCQ" secondAttribute="leading" constant="55" id="Jf6-hA-CyL"/>
+                                        <constraint firstAttribute="trailing" secondItem="XmC-kd-R12" secondAttribute="trailing" constant="65" id="L4j-02-hlg"/>
+                                        <constraint firstItem="XmC-kd-R12" firstAttribute="top" secondItem="wfj-NI-pCQ" secondAttribute="top" constant="52" id="Ztc-1K-keF"/>
+                                        <constraint firstAttribute="bottom" secondItem="XmC-kd-R12" secondAttribute="bottom" constant="50" id="end-3K-zy8"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="XmC-kd-R12"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="Jf6-hA-CyL"/>
+                                            <exclude reference="L4j-02-hlg"/>
+                                            <exclude reference="Ztc-1K-keF"/>
+                                            <exclude reference="end-3K-zy8"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="XmC-kd-R12"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="Jf6-hA-CyL"/>
+                                            <include reference="L4j-02-hlg"/>
+                                            <include reference="Ztc-1K-keF"/>
+                                            <include reference="end-3K-zy8"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="XmC-kd-R12" id="xaE-EM-L9I"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9pv-A4-QxB" id="s7t-lE-Zgf"/>
+                            <outlet property="delegate" destination="9pv-A4-QxB" id="7J0-tx-2OB"/>
+                        </connections>
+                    </tableView>
                     <tabBarItem key="tabBarItem" title="Grades" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="tableView" destination="YWf-fU-aio" id="KvH-nA-KeZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="765" y="-288.75"/>
         </scene>
         <!--GPA-->
         <scene sceneID="wg7-f3-ORb">

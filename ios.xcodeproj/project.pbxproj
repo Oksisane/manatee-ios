@@ -17,6 +17,7 @@
 		C28081ED1ABB556B00E6FA2A /* CourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28081EC1ABB556B00E6FA2A /* CourseView.xib */; };
 		C28081EF1ABB571700E6FA2A /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28081EE1ABB571700E6FA2A /* TestView.xib */; };
 		C28081F11ABB578500E6FA2A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28081F01ABB578500E6FA2A /* TestViewController.swift */; };
+		C28081F31ABB7D8800E6FA2A /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28081F21ABB7D8800E6FA2A /* CourseCell.swift */; };
 		C28CE2741A3D25510070096C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2731A3D25510070096C /* AppDelegate.swift */; };
 		C28CE2761A3D25510070096C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2751A3D25510070096C /* FirstViewController.swift */; };
 		C28CE2781A3D25510070096C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CE2771A3D25510070096C /* SecondViewController.swift */; };
@@ -52,6 +53,7 @@
 		C28081EC1ABB556B00E6FA2A /* CourseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseView.xib; sourceTree = "<group>"; };
 		C28081EE1ABB571700E6FA2A /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		C28081F01ABB578500E6FA2A /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		C28081F21ABB7D8800E6FA2A /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		C28CE26E1A3D25510070096C /* ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28CE2721A3D25510070096C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C28CE2731A3D25510070096C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				C28CE27E1A3D25510070096C /* LaunchScreen.xib */,
 				C28CE2711A3D25510070096C /* Supporting Files */,
 				C2A255231A8EB7D200AAB13D /* Retriever.swift */,
+				C28081F21ABB7D8800E6FA2A /* CourseCell.swift */,
 				C274071B1A9063750091751E /* Parser.swift */,
 				C274071D1A913A660091751E /* DataStructs.swift */,
 				C26BFC261AB88DBB000F516B /* ios-bridging-header.h */,
@@ -222,7 +225,7 @@
 		C28CE2661A3D25510070096C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Ehsan Asdar";
 				TargetAttributes = {
 					C28CE26D1A3D25510070096C = {
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28081F31ABB7D8800E6FA2A /* CourseCell.swift in Sources */,
 				C27407191A9062E80091751E /* HTMLNode.swift in Sources */,
 				C274071A1A9062E80091751E /* HTMLParser.swift in Sources */,
 				C28081F11ABB578500E6FA2A /* TestViewController.swift in Sources */,
@@ -417,7 +421,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos8.1;
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ios/ios-bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,7 +458,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos8.1;
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ios/ios-bridging-header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
