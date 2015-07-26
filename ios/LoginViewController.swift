@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var labelTextField: UILabel!
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
     @IBAction func verifyLogin(sender: AnyObject) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

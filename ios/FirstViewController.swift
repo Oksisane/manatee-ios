@@ -11,7 +11,7 @@ import YapDatabase
 var courses = [Course]()
 class FirstViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let courseCellIdentifier = "CourseCell"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class FirstViewController: UIViewController,UITableViewDataSource,UITableViewDel
         var connection = appDelegate.connection!
         connection.readWithBlock({
             (transaction: YapDatabaseReadTransaction!) in
-            var message : [Course] = (transaction.objectForKey("courses", inCollection: "courseinfo")) as [Course]
+            var message : [Course] = (transaction.objectForKey("courses", inCollection: "courseinfo")) as! [Course]
             courses = message
         })
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,7 +33,7 @@ class FirstViewController: UIViewController,UITableViewDataSource,UITableViewDel
     }
     
     func courseCellAtIndexPath(indexPath:NSIndexPath) -> CourseCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(courseCellIdentifier) as CourseCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(courseCellIdentifier) as! CourseCell
         let localcourse = courses[indexPath.row] as Course!
         cell.titleLabel.text = localcourse.title
         return cell

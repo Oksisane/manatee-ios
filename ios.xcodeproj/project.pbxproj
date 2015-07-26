@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3CBD05531AC8C5F2881AC847 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A3E70F9944B100FA529973 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C22E1B6B1ABB4CE000900BD8 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22E1B6A1ABB4CE000900BD8 /* CourseViewController.swift */; };
+		C24355851B63C51200E5B17F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24355841B63C51200E5B17F /* NetworkManager.swift */; };
+		C243558D1B64414600E5B17F /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243558C1B64414600E5B17F /* SemesterCell.swift */; };
 		C27407161A9061600091751E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C27407151A9061600091751E /* libxml2.dylib */; };
 		C27407191A9062E80091751E /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27407171A9062E80091751E /* HTMLNode.swift */; };
 		C274071A1A9062E80091751E /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27407181A9062E80091751E /* HTMLParser.swift */; };
@@ -44,6 +46,8 @@
 		25A3E70F9944B100FA529973 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71DD599F3F7578970FFBEC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C22E1B6A1ABB4CE000900BD8 /* CourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
+		C24355841B63C51200E5B17F /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C243558C1B64414600E5B17F /* SemesterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
 		C26BFC261AB88DBB000F516B /* ios-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-bridging-header.h"; sourceTree = "<group>"; };
 		C27407151A9061600091751E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		C27407171A9062E80091751E /* HTMLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTMLNode.swift; path = "Swift-HTML-Parser-master/Swift-HTML-Parser/HTMLNode.swift"; sourceTree = "<group>"; };
@@ -148,7 +152,9 @@
 				C28081F21ABB7D8800E6FA2A /* CourseCell.swift */,
 				C274071B1A9063750091751E /* Parser.swift */,
 				C274071D1A913A660091751E /* DataStructs.swift */,
+				C243558C1B64414600E5B17F /* SemesterCell.swift */,
 				C26BFC261AB88DBB000F516B /* ios-bridging-header.h */,
+				C24355841B63C51200E5B17F /* NetworkManager.swift */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -334,7 +340,9 @@
 				C28081F31ABB7D8800E6FA2A /* CourseCell.swift in Sources */,
 				C27407191A9062E80091751E /* HTMLNode.swift in Sources */,
 				C274071A1A9062E80091751E /* HTMLParser.swift in Sources */,
+				C24355851B63C51200E5B17F /* NetworkManager.swift in Sources */,
 				C28081F11ABB578500E6FA2A /* TestViewController.swift in Sources */,
+				C243558D1B64414600E5B17F /* SemesterCell.swift in Sources */,
 				C2A255241A8EB7D200AAB13D /* Retriever.swift in Sources */,
 				C22E1B6B1ABB4CE000900BD8 /* CourseViewController.swift in Sources */,
 				C28CE2DC1A3D35B50070096C /* LoginViewController.swift in Sources */,

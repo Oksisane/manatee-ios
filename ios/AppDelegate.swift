@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         var paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        var baseDir = paths.count > 0 ? paths[0] as String : NSTemporaryDirectory() as String
+        var baseDir = paths.count > 0 ? paths[0] as! String : NSTemporaryDirectory() as String
         var database = YapDatabase(path: baseDir.stringByAppendingPathComponent("YapDatabase.sqlite"))
         connection = database.newConnection()
 

@@ -1,5 +1,5 @@
 //
-//  DataStructs.swift
+//  Datas!tructs.swift
 //  ios
 //
 //  Created by Ehsan Asdar on 2/15/15.
@@ -38,7 +38,7 @@ class Cycle: NSObject,NSCoding{
     }
     required init(coder aDecoder: NSCoder) {
         self.index = aDecoder.decodeInt32ForKey("index")
-        self.average = aDecoder.decodeObjectForKey("average") as GradeValue
+        self.average = aDecoder.decodeObjectForKey("average") as! GradeValue
     }
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeInt32(self.index, forKey:"index")
@@ -59,9 +59,9 @@ class Semester: NSObject,NSCoding{
 
     required init(coder aDecoder: NSCoder) {
         self.index = aDecoder.decodeInt32ForKey("index")
-        self.average = aDecoder.decodeObjectForKey("average") as GradeValue
-        self.examGrade = aDecoder.decodeObjectForKey("examGrade") as GradeValue
-        self.cycles = aDecoder.decodeObjectForKey("cycles") as [Cycle]
+        self.average = aDecoder.decodeObjectForKey("average") as! GradeValue
+        self.examGrade = aDecoder.decodeObjectForKey("examGrade") as! GradeValue
+        self.cycles = aDecoder.decodeObjectForKey("cycles")as! [Cycle]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -86,10 +86,10 @@ class Course: NSObject,NSCoding{
     }
     
     required init(coder aDecoder: NSCoder) {
-        self.title = aDecoder.decodeObjectForKey("title") as NSString
-        self.teacherName = aDecoder.decodeObjectForKey("teacherName") as NSString
-        self.courseId = aDecoder.decodeObjectForKey("courseId") as NSString
-        self.semseters = aDecoder.decodeObjectForKey("semesters") as [Semester]
+        self.title = aDecoder.decodeObjectForKey("title") as! NSString as String
+        self.teacherName = aDecoder.decodeObjectForKey("teacherName") as! NSString as String
+        self.courseId = aDecoder.decodeObjectForKey("courseId") as! NSString as String
+        self.semseters = aDecoder.decodeObjectForKey("semesters") as! [Semester]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
