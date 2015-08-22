@@ -20,7 +20,7 @@ class Parser{
         var courses:Array<Course>
         courses = []
         var blah:Int? = metadataRows!.count-1
-        for i in 1 ... blah!{
+        for i in 2 ... blah!{
             var course = parseCourse(metadataRows![i]
                 ,graderow: gradeRows![i])
             courses.append(course)
