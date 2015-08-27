@@ -14,6 +14,8 @@ var networkmanager = NetworkManager()
 var cooks = networkmanager.cookies
 var mgr = networkmanager.manager!
 class Retriever{
+    static let RESULT_SUCCESS = "SUCCESS!";
+    static let RESULT_ERROR = "ERROR";
         class func getAustinisdCookie (username : String, password : String,callback:(String?)->Void){
         let parameters = [
             "cn": username,
@@ -25,7 +27,7 @@ class Retriever{
                     callback(cooks.cookiesForURL(NSURL(string: "http://.austinisd.org")!)!.first!.value!)
                 }
                 else{
-                    callback("ERROR")
+                    callback(self.RESULT_ERROR)
                 }
         }
     }
@@ -43,7 +45,7 @@ class Retriever{
                     callback("JSESSIONID=" + jsessionidcookie)
                 }
                 else{
-                    callback("ERROR")
+                    callback(self.RESULT_ERROR)
                 }
         }
         //my-teams.austinisd.org/selfserve/EntryPointSignOnAction.do?parent=false
@@ -59,10 +61,10 @@ class Retriever{
         mgr.request(.POST, "https://grades.austinisd.org/selfserve/SignOnLoginAction.do",parameters:parameters)
             .response { (request, response, data, error) in
                 if error==nil{
-                    callback("SUCCESS!")
+                    callback(self.RESULT_SUCCESS)
                 }
                 else{
-                    callback("ERROR")
+                    callback(self.RESULT_ERROR)
                 }
             }.responseString { (_, _, string, _) in
                 println(string)
@@ -72,12 +74,12 @@ class Retriever{
     //Get cookies and post login using other class methods
     class func login (username:String,password:String,callback:(String?)->Void){
         self.getTEAMSCookie(){
-            if ($0 != "ERROR"){
+            if ($0 != self.RESULT_ERROR){
                 //Got second cookie
                 let finalcookie = $0!;
                 self.TEAMSlogin(username,password:password,cookies:finalcookie)
                     {
-                        if ($0 != "ERROR"){
+                        if ($0 != self.RESULT_ERROR){
                             callback(finalcookie)
                         }
                         else{
@@ -103,7 +105,7 @@ class Retriever{
         mgr.request(.POST, ("https://grades.austinisd.org" + path),parameters:parameters)
             .response { (request, response, data, error) in
                 if error != nil{
-                    callback("ERROR")
+                    callback(self.RESULT_ERROR)
                 }
             }.responseString { (_, _, string, _) in
                 callback(string)

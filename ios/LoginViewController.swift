@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
         var connection = appDelegate.connection!
         
         Retriever.login(usernameTextField.text, password: passwordTextField.text){
-            if ($0 != "ERROR"){
+            if ($0 != Retriever.RESULT_ERROR){
                 Retriever.getCourses($0!){
                     println($0[0].semseters[0].cycles[0].average.grade)
                     var courses = $0
