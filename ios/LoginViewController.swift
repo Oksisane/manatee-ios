@@ -21,10 +21,10 @@ class LoginViewController: UIViewController {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         var connection = appDelegate.connection!
         
-        Retriever.login(usernameTextField.text, password: passwordTextField.text){
+        Retriever.login(usernameTextField.text!, password: passwordTextField.text!){
             if ($0 != Retriever.RESULT_ERROR){
                 Retriever.getCourses($0!){
-                    println($0[0].semseters[0].cycles[0].average.grade)
+                    print($0[0].semseters[0].cycles[0].average.grade)
                     var courses = $0
                     connection.readWriteWithBlock({
                         (transaction: YapDatabaseReadWriteTransaction!) in

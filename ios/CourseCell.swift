@@ -34,7 +34,7 @@ class CourseCell:UITableViewCell,UITableViewDataSource,UITableViewDelegate{
         var cell:SemesterCell = self.gradeTable.dequeueReusableCellWithIdentifier("SemesterCell") as! SemesterCell
         for course in courses{
             if (titleLabel.text == course.title){
-                println("Loading " + course.title + " with values " + course.semseters[indexPath.row].cycles[0].average.grade.description)
+                print("Loading " + course.title + " with values " + course.semseters[indexPath.row].cycles[0].average.grade.description)
                 cell.GradeOne.text = Int(course.semseters[indexPath.row].cycles[0].average.grade).description
             }
         }

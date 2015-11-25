@@ -7,81 +7,73 @@
 //
 
 import Foundation
+import Kanna
 
 class Parser{
-    class func parseAverages(html:String)->[Course]{
-        var err : NSError?
-        var parser = HTMLParser(html: html, error: &err)
-        var html = parser.html
-        var metadataTable = html?.findNodeById("finalTablebotLeft1")?.findNodeById("tableHeaderTable")
-        var metadataRows = metadataTable?.findChildTags("tr")
-        var gradeTable = html?.findNodeById("finalTablebottomRight1")?.findNodeById("tableHeaderTable")
-        var gradeRows = gradeTable?.findChildTags("tr")
-        var courses:Array<Course>
-        courses = []
-        var blah:Int? = metadataRows!.count-1
-        for i in 2 ... blah!{
-            var course = parseCourse(metadataRows![i]
-                ,graderow: gradeRows![i])
+    class func parseAverages(html:String)->[Course] {
+        let parser = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding)
+        let metadataTable = parser!.body!.css("#finalTablebotLeft1")[0].css("#tableHeaderTable")[0]
+        let metadataRows = metadataTable.css("tr")
+        let gradeTable = parser!.body!.css("#finalTablebottomRight1")[0].css("#tableHeaderTable")[0]
+        let gradeRows = gradeTable.css("tr")
+        var courses:Array<Course> = []
+        for i in 2 ... metadataRows.count - 1 {
+            let course = parseCourse(metadataRows[i], graderow: gradeRows[i])
             courses.append(course)
         }
         return courses
     }
-    class func parseCourse(metadatarow:HTMLNode?,graderow:HTMLNode?)->Course{
-        var metadataCells = metadatarow?.findChildTags("td")
-        var gradeCells = graderow?.findChildTags("td")
+    
+    class func parseCourse(metadatarow: htmlNodePtr?,graderow: XMLElement?)->Course{
+        let metadataCells = metadatarow!.css("td")
+        let gradeCells = graderow!.css("td")
         
-        var courseID = metadataCells![0].contents
-        var teacherCell = metadataCells![2].findChildTag("a")!
-        var titleCell = metadataCells![3]
+        let courseID = metadataCells[0].text
+        let teacherCell = metadataCells[2].css("a")
+        let titleCell = metadataCells[3]
         
         var semesters:Array<Semester> = []
-        for i in 0...1{
-            var celloffset = i*(5)
-            var semestercells:Array<HTMLNode> = []
-            for j in 0...2{
-                semestercells.append(gradeCells![celloffset+j])
+        for i in 0...2 { // Number of semesters (unfortunately hardcoded)
+            let celloffset = i * (5) // 5 = cycles per semester + exam + semester average
+            var cycleCells:Array<XMLElement> = []
+            for j in 0...2  { // Number of semesters again
+                cycleCells.append(gradeCells[celloffset+j])
             }
-            var examCell = gradeCells![celloffset+3]
-            var semAvgCell = gradeCells![celloffset+4]
-            semesters.append(parseSemester(semestercells, examcell: examCell,avgcell:semAvgCell,index:i))
+            let examCell = gradeCells[celloffset+3]
+            let semAvgCell = gradeCells[celloffset+4]
+            semesters.append(parseSemester(cycleCells, examcell: examCell, avgcell:semAvgCell, index:i))
         }
-        let course = Course(title: titleCell.contents, teacherName: teacherCell.contents, courseId: courseID, semestersIn: semesters)
+        let course = Course(title: titleCell.text!, teacherName: teacherCell.text!, courseId: courseID!, semestersIn: semesters)
         return course
     }
-    class func parseSemester(cyclecells:[HTMLNode], examcell:HTMLNode,avgcell:HTMLNode,index:Int)->Semester{
+    
+    class func parseSemester(cyclecells:[XMLElement], examcell:XMLElement, avgcell:XMLElement, index:Int) -> Semester {
         var cycles:[Cycle] = []
-        for i in 0...2{
-            cycles.append(parseCycle(cyclecells[i],index:i))
+        for i in 0...2 {
+            cycles.append(parseCycle(cyclecells[i], index: i))
         }
-        var examlink = examcell.findChildTag("a")
-        var examgrade = GradeValue(fromString: examlink!.contents)
-        if let fontTag = examlink?.findChildTag("font"){
-            examgrade = GradeValue(fromString: fontTag.contents)
-        }
-        var semesterlink = avgcell.findChildTag("a")
-        var numcompleted = Float(0)
-        var tempavg = Float(0)
+        let examlink = examcell.css("a")[0]
+        let examgrade = GradeValue(fromString: examlink.text!)
+        var cyclesCompleted = Float(0)
+        var sum = Float(0)
         for i in 0...2{
             if (cycles[i].average.grade != -1){
-                numcompleted++
-                tempavg+=cycles[i].average.grade
+                cyclesCompleted++
+                sum += cycles[i].average.grade
             }
         }
         if(examgrade.grade != -1){
-            numcompleted++
-            tempavg+=examgrade.grade
+            cyclesCompleted++
+            sum+=examgrade.grade
         }
-        var semaverage = GradeValue(gradefloat:(tempavg/numcompleted))
-        let semesterout = Semester(index: index, average: semaverage, examGrade: examgrade, cyclesIn: cycles)
+        let semAverage = GradeValue(gradefloat:(sum/cyclesCompleted))
+        let semesterout = Semester(index: index, average: semAverage, examGrade: examgrade, cyclesIn: cycles)
         return semesterout
     }
-    class func parseCycle(cycle:HTMLNode,index:Int)->Cycle{
-        var link = cycle.findChildTag("a")
-        var average = GradeValue(fromString:link!.contents)
-        if let fontTag = link?.findChildTag("font"){
-            average = GradeValue(fromString: fontTag.contents)
-        }
+    
+    class func parseCycle(cycle:XMLElement, index:Int)->Cycle{
+        let link = cycle.css("a")[0]
+        let average = GradeValue(fromString:link.text!)
         let cycle = Cycle(index: index, average: average)
         return cycle
     }

@@ -24,7 +24,7 @@ class Retriever{
         mgr.request(.POST, "https://my.austinisd.org/WebNetworkAuth/", parameters: parameters)
             .response { (request, response, data, error) in
                 if (cooks.cookiesForURL(NSURL(string: "http://.austinisd.org")!)?.count > 0 && cooks.cookiesForURL(NSURL(string: "http://.austinisd.org")!)?.first?.name == "CStoneSessionID"){
-                    callback(cooks.cookiesForURL(NSURL(string: "http://.austinisd.org")!)!.first!.value!)
+                    callback(cooks.cookiesForURL(NSURL(string: "http://.austinisd.org")!)!.first!.value)
                 }
                 else{
                     callback(self.RESULT_ERROR)
@@ -37,11 +37,11 @@ class Retriever{
                 var jsessionidcookie = ""
                 for cookie in  cooks.cookies!.generate(){
                     if cookie.name == "JSESSIONID"{
-                        jsessionidcookie = cookie.value!!
+                        jsessionidcookie = cookie.value
                     }
-                    println(cookie);
+                    print(cookie);
                 }
-                if (count(jsessionidcookie) > 0){
+                if (jsessionidcookie.characters.count > 0){
                     callback("JSESSIONID=" + jsessionidcookie)
                 }
                 else{
@@ -66,8 +66,8 @@ class Retriever{
                 else{
                     callback(self.RESULT_ERROR)
                 }
-            }.responseString { (_, _, string, _) in
-                println(string)
+            }.responseString { (string) in
+                print(string)
         }
         //my-teams.austinisd.org/selfserve/EntryPointSignOnAction.do?parent=false
     }
@@ -107,8 +107,8 @@ class Retriever{
                 if error != nil{
                     callback(self.RESULT_ERROR)
                 }
-            }.responseString { (_, _, string, _) in
-                callback(string)
+            }.responseString { (string) in
+                callback(string.result.value)
         }
     }
 }
